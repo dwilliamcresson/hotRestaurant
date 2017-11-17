@@ -14,14 +14,14 @@ app.use(bodyParser.json());
 
 // RESERVATION DATA FORM
 
-/*var reservations = [{
+var reservations = [{
     resName: "elenawasnak",
     name: "Elena Wasnak",
     time: "8.00PM",
     date: "11/15/2018",
     phone: "555-867-5309",
     email: "no@no.no"
-}];*/
+}];
 
 app.get("/api/:reservations?", function (req, res) {
     var chosen = req.params.reservations;
@@ -45,7 +45,7 @@ app.post("/api/new", function(req, res) {
   
     console.log(newReservation);
   
-    characters.push(newReservation);
+    reservations.push(newReservation);
   
     res.json(newReservation);
   });
