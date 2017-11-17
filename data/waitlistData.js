@@ -7,4 +7,4 @@ var waitlistArray = [{
     email: "no@no.no"
 }];
 
-module.export = waitlistArray;
+modules.export = waitlistArray;

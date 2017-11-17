@@ -7,4 +7,4 @@ var reservationArray = [{
     email: "no@no.no"
 }];
 
-module.export = reservationArray;
+modules.export = reservationArray;
