@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Mon Petit Fromage</title>
+  <!-- Latest compiled and minified CSS & JS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="jumbotron">
+      <h1>Mon Petit Fromage</h1>
+      <h3>Fromage For All!</h3>
+      <hr>
+      <a href="/tables">
+        <button type="button" class="btn btn-danger btn-lg">
+          <span class="glyphicon glyphicon-plus"></span> View Tables</button>
+      </a>
+      <a href="/reservations">
+        <button type="button" class="btn btn-danger btn-lg">
+          <span class="glyphicon glyphicon-th-list"></span> Place New Reservation</button>
+      </a>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          <strong>Reservations Search</strong>
+        </h3>
+      </div>
+      <div class="panel-body">
+        <input type="text" id="reservations-search" class="form-control">
+        <br>
+        <div class="text-right">
+          <button type="submit" class="btn btn-primary btn-md" id="search-btn">
+            <span class="glyphicon glyphicon-search"></span> Search Your Feelings. You know it to be true.</button>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          <strong>Reservations Information</strong>
+        </h3>
+      </div>
+      <div class="panel-body">
+        <div class="well">
+          <h2 id="name">Elena Wasnak</h2>
+          <div id="stats">
+            <h3>
+              <strong>Time:</strong>
+              <span id="time">8:00PM</span>
+            </h3>
+            <h3>
+              <strong>Date:</strong>
+              <span id="date">11/15/2018</span>
+            </h3>
+           <!-- <h3>
+              <strong>Special Occasion:</strong>
+              <span id="specialOccasion">true</span>
+            </h3> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      // QUESTION: What is this code doing?
+      $("#search-btn").on("click", function () {
+        var searchedReservation = $("#character-search").val().trim();
+
+        searchedReservation = searchedReservation.replace(/\s+/g, "").toLowerCase();
+
+        // QUESTION: What does $.get do? What are the parameters it is expecting?
+        $.get("/api/" + searchedReservation, function (data) {
+          console.log(data);
+          if (data) {
+            $("#stats").show();
+            $("#name").text(data.name);
+            $("#time").text(data.time);
+            $("#date").text(data.date);
+            $("#specialOccasion").text(data.specialOccasion);
+          } else {
+            $("#name").text("No reservation found.");
+            $("#stats").hide();
+          }
+        });
+      });
+    </script>
+
+    <div class="row">
+      <a href="/">
+        <button type="button" class="btn btn-danger btn-sm">
+          <span class="glyphicon glyphicon-eye-open"></span> API Table Link</button>
+      </a>
+      <a href="/">
+        <button type="button" class="btn btn-danger btn-sm">
+          <span class="glyphicon glyphicon-th-list"></span> API Wait List</button>
+      </a>
+    </div>
+
+</body>
+
+</html>
