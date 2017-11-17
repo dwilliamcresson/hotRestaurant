@@ -1,8 +1,8 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var path = require("path");
-var reservationData = require(__dirname, "reservationsData");
-var waitlistData = require(__dirname, "waitlistData");
+//var reservationsData = require(__dirname, "reservationsData");
+//var waitlistData = require(__dirname, "waitlistData");
 
 var app = express();
 //var PORT = 8889;
@@ -14,7 +14,16 @@ app.use(bodyParser.json());
 
 // RESERVATION DATA FORM
 
-var reservations = [{
+var reservationsData = [{
+    resName: "elenawasnak",
+    name: "Elena Wasnak",
+    time: "8.00PM",
+    date: "11/15/2018",
+    phone: "555-867-5309",
+    email: "no@no.no"
+}];
+
+var waitlist = [{
     resName: "elenawasnak",
     name: "Elena Wasnak",
     time: "8.00PM",
@@ -24,19 +33,19 @@ var reservations = [{
 }];
 
 app.get("/api/:reservations?", function (req, res) {
-    var chosen = req.params.reservations;
+    var chosen = req.params.reservationsData;
 
     if (chosen) {
         console.log(chosen);
 
-        for (var i = 0; i < reservations.length; i++) {
-            if (chosen === reservations[i].routeName) {
-                return res.json(reservations[i]);
+        for (var i = 0; i < reservationsData.length; i++) {
+            if (chosen === reservationsData[i].routeName) {
+                return res.json(reservationsData[i]);
             }
         }
         return res.send("No reservations Found");
     }
-    return res.json(reservations);
+    return res.json(reservationsData);
 });
 
 app.post("/api/new", function(req, res) {
