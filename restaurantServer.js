@@ -1,6 +1,8 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var path = require("path");
+var reservationData = require(__dirname, "reservationsData");
+var waitlistData = require(__dirname, "waitlistData");
 
 var app = express();
 //var PORT = 8889;
@@ -12,13 +14,13 @@ app.use(bodyParser.json());
 
 // RESERVATION DATA FORM
 
-var reservations = [{
+/*var reservations = [{
     resName: "elenawasnak",
     name: "Elena Wasnak",
     time: "8.00PM",
     date: "11/15/2018",
     specialOccasion: true
-}];
+}];*/
 
 app.get("/api/:reservations?", function (req, res) {
     var chosen = req.params.reservations;
