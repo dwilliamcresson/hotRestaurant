@@ -73,7 +73,7 @@
     <script type="text/javascript">
       // QUESTION: What is this code doing?
       $("#search-btn").on("click", function () {
-        var searchedReservation = $("#character-search").val().trim();
+        var searchedReservation = $("#reservations-search").val().trim();
 
         searchedReservation = searchedReservation.replace(/\s+/g, "").toLowerCase();
 
@@ -85,7 +85,8 @@
             $("#name").text(data.name);
             $("#time").text(data.time);
             $("#date").text(data.date);
-            $("#specialOccasion").text(data.specialOccasion);
+            $("#phoneNumber").text(data.phoneNumber);
+            $("#email").text(data.email);
           } else {
             $("#name").text("No reservation found.");
             $("#stats").hide();
